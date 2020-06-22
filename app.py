@@ -2,7 +2,7 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 
 app = Flask(__name__, static_url_path='')
-CORS(app)
+CORS(app)  # preventing cors errors
 
 
 @app.route("/")
@@ -10,8 +10,10 @@ def hello():
     return jsonify('Cannot GET /')
 
 
+# for json data
 @app.route("/json")
 def json_data():
+    # some test data
     data = [
         {
             'fullname': 'Olivier Nshimiye',
@@ -29,6 +31,7 @@ def json_data():
     return jsonify(data)
 
 
+# for csv data
 @app.route("/csv")
 def csv_file():
     return send_from_directory('.', 'data.csv')
